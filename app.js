@@ -5,10 +5,10 @@ var bodyParser= require("body-parser");
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 var campgrounds = [{
-    name: "camp", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbOFdG-s5swRW6HE4toKFV6ZhF7UpGvpoIuL-FjVcXzgUFeDPJ"},
-    { name: "camp2", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbOFdG-s5swRW6HE4toKFV6ZhF7UpGvpoIuL-FjVcXzgUFeDPJ"},
-    { name: "camp3", image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbOFdG-s5swRW6HE4toKFV6ZhF7UpGvpoIuL-FjVcXzgUFeDPJ"},
-    { name: "camp2", image: "image/will.jpg"}
+    name: "camp", image: "https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"},
+    { name: "camp2", image: "https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"},
+    { name: "camp3", image: "https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"},
+    { name: "camp2", image: "https://images.pexels.com/photos/207962/pexels-photo-207962.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"}
 ]
 
 app.get("/", function(req, res){
@@ -25,9 +25,15 @@ app.post("/campgrounds", function(req, res){
      var name = req.body.name;
      var image= req.body.image;
      var newcamp = {name:name, image: image}
-     campgrounds.push(newcamp);
-     //redirect to campgrounds page
-     res.redirect("/campgrounds");
+     campground.create(newCampground, function(err, newlyCreated){
+         if(err){
+             console.log(err)
+         } else {
+ //redirect to campgrounds page
+ res.redirect("/campgrounds");
+         }
+     })
+    
 });
 
 app.get("/campgrounds/new", function(req, res){

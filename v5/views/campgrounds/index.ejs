@@ -1,8 +1,8 @@
-<% include partials/header %>  
-
+<% include ../partials/header %>  
+ 
 <nav id="mainNavbar" class="navbar navbar-dark bg-dark navbar-expand-md py-0 fixed-top">
          <a href="/" class="navbar-brand">Willong</a>
-        <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation"></button>
+        <!-- <button class="navbar-toggler" data-toggle="collapse" data-target="#navLinks" aria-label="Toggle navigation"></button> -->
         <span class="navbar-toggler-icon"></span>
        <div class="collapse navbar-collapse" id="navLinks">
          <ul class="navbar-nav">
@@ -30,8 +30,25 @@
         </p>
     </div>   
 </header>
+<div class="row">
+  <div class="col-lg-6">
+<div class="card" style="width: 18rem;">
+  <% camp.forEach(function(campground){%>
+  <img src="<%= campground.image %>" class="card-img-top" alt="...">
+  <div class="caption">
+    <h2> <%= campground.name %> </h2>
+</div>
+  <div class="card-body">
+    <h5 class="card-title">Image</h5>
+    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="/campgrounds/<%= campground._id %>" class="btn btn-primary">Go somewhere</a>
+  </div>
+  <% }) %> 
+</div>
+</div>
+  </div>
 
-      <div class="row text-center" style="display:flex; flex-wrap: wrap;">
+      <!-- <div class="row text-center" style="display:flex; flex-wrap: wrap;">
           <% camp.forEach(function(campground){%>
             <div class="col-md-3 col-sm-6">
                 <div class="thumbnail">
@@ -39,11 +56,14 @@
                      <div class="caption">
                          <h2> <%= campground.name %> </h2>
                      </div>
+                     <p>
+                       <a href="/campgrounds/<%= campground._id %>"  class="btn btn-primary">More info</a>
+                     </p>
                 </div>
             </div>
-            <% }) %>
+            <% }) %>  
         </div>
-       
+        -->
 
 </div>
-<% include partials/footer %>
+<% include ../partials/footer %>
