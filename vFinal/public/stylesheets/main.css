@@ -7,3 +7,12 @@ width : 100%;
 .thumbnail.caption-full{
     padding: 9px;
 }
+#delete-form{
+ display: inline;
+}
+#price {
+    nav-right: auto;
+}
+#log {
+    nav-right: auto;
+}

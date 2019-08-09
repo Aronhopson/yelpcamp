@@ -4,7 +4,7 @@ var  express      = require("express"),
     mongoose      = require("mongoose"),
     passport      = require("passport"),
     LocalStrategy = require("passport-local"),
-    methodOverride= require("method-override"),
+    Methodride    = require("method-override"),
     Campground    = require("./models/campground"),
     Comment       = require("./models/comment"),
     User          = require("./models/user"),
@@ -17,11 +17,11 @@ var  express      = require("express"),
     
         //execute the functions which is exports
   
-mongoose.connect("mongodb://localhost:27017/yelp_camp6", {useNewUrlParser: true});
+mongoose.connect("mongodb://localhost:27017/yelp_campfinal", {useNewUrlParser: true});
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
-app.use(methodOverride("_method"));
+app.use(Methodride("_method"));
 //seed data base
 //seedDB();  
 

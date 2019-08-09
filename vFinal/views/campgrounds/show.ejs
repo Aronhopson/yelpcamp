@@ -15,10 +15,17 @@
             <div class="thumbnail">
                 <img class="img-responsive" src="<%= campground.image %>">
                 <div class="caption-full">
-                    <h3 class="pull-right">$9.00/piece</h3>
+                    <p id="price" class="pull-right">$9.00/piece</p>
                     <h4><a><%= campground.name %></a></h4>
                     <p> <%= campground.description %></p>
                     <p>SUBMITTED BY <%= campground.author.username %> </p>
+
+                    <% if (currentUser && campground.author.id.equals(currentUser.id)) { %>
+                    <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+                    <form id="delete-form" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
+                        <button class="btn btn-danger">Delete</button>
+                     </form>
+                   <% }%>
 
                 </div>
             </div>
