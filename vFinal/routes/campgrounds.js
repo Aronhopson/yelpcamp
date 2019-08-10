@@ -95,7 +95,7 @@ router.get("/new", isLoggedIn,  function(req, res){
       res.redirect("/login");
     }
 
-
+//  ownership
 function checkCampgroundOwnership(req, res, next){
     if(req.isAuthenticated()){
         Campground.findById(req.params.id, function(err, foundCampground){
