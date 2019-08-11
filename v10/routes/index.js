@@ -18,11 +18,10 @@ router.get("/", function(req, res){
         var newUser = User({username: req.body.username});
         User.register(newUser, req.body.password, function(err, user){
             if(err){
-                req.flash("error", err.message);
+                console.log(err);
                 return res.render("register")
             }
             passport.authenticate("local")(req, res, function(){
-                req.flash("success", "Well come  " + user.username);
                 res.redirect("/campgrounds")
             });
         }); 
@@ -30,7 +29,6 @@ router.get("/", function(req, res){
     
      //login form
      router.get("/login", function(req, res){
- 
          res.render("login");
      });
      //handling login logic
@@ -41,11 +39,19 @@ router.get("/", function(req, res){
         res.send("login");
     });
     
-    //logic logout route
+    //logic logouit route
     router.get("/logout", function(req, res){
-        req.logout();
-        req.flash("success", "Log Out!");
+        req.logOut();
         res.redirect("/campgrounds");
     });
     
-module.exports = router;
+    //middle ware
+    function isLoggedIn(req, res, next)
+    {
+      if(req.isAuthenticated()){
+          return next();
+      }
+      res.redirect("/login");
+    }
+    
+    module.exports = router;

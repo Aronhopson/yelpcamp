@@ -21,6 +21,7 @@ router.get("/", function(req, res){
 router.post("/", middleware.isLoggedIn, function(req, res){
     //get data from form and add o camp grounds array
      var name = req.body.name;
+     var price =req.body.price;
      var image= req.body.image;
      var desc = req.body.description;
        var author = {
@@ -28,7 +29,7 @@ router.post("/", middleware.isLoggedIn, function(req, res){
            username: req.user.username
        }
      
-     var newcamp = {name: name, image: image, description: desc, author:author}
+     var newcamp = {name: name, price: price, image: image, description: desc, author:author}
 
      Campground.create(newcamp, function(err, newlyCreated){
         if(err){

@@ -5,7 +5,6 @@ var  express      = require("express"),
     passport      = require("passport"),
     LocalStrategy = require("passport-local"),
     Methodride    = require("method-override"),
-    flash         = require("connect-flash"),
     Campground    = require("./models/campground"),
     Comment       = require("./models/comment"),
     User          = require("./models/user"),
@@ -23,7 +22,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/public"));
 app.use(Methodride("_method"));
-app.use(flash());
 //seed data base
 //seedDB();  
 
@@ -41,8 +39,6 @@ app.use(require("express-session")({
 
  app.use(function(req, res, next){
      res.locals.currentUser = req.user;
-     res.locals.error = req.flash("error");
-     res.locals.success = req.flash("success");
      next();
  });
 
